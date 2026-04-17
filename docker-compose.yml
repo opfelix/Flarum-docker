@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  flarum:
+    build: .
+    container_name: flarum
+    ports:
+      - "8000:8000"
+    volumes:
+     - /opt/flarum/flarum:/opt/flarum
+     - /opt/flarum/nginx:/etc/nginx
+     - /opt/flarum/log/nginx:/var/log/nginx
+    restart: always
+
+  db:
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /opt/flarum/mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    restart: always

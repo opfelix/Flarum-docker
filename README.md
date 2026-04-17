@@ -5,3 +5,4 @@ git clone 仓库并进入文件夹中执行下面指令
 docker build -t flarum .
 ```
 执行之后请自行挂载目录及启动镜像
+`sudo mkdir -p /opt/flarum/mysql/data /opt/flarum/flarum /opt/flarum/nginx /opt/flarum/log/nginx`
